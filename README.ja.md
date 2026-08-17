@@ -42,9 +42,9 @@ FAIL  10 claim(s) are not in any source.
 ## インストール
 
 ```bash
-pip install grounded                 # 本体。外部依存ゼロ
-pip install "grounded[pdf]"          # + PDF対応
-pip install "grounded[mcp]"          # + MCPサーバー
+pip install grounded-check                 # 本体。外部依存ゼロ
+pip install "grounded-check[pdf]"          # + PDF対応
+pip install "grounded-check[mcp]"          # + MCPサーバー
 ```
 
 Python 3.10以上。ネットワーク接続、APIキー、モデルのダウンロード、GPU、いずれも不要です。**文書が端末の外に出ることはありません。**

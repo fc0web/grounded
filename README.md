@@ -47,9 +47,9 @@ promise the tool can actually keep.
 ## Install
 
 ```bash
-pip install grounded                 # core, zero dependencies
-pip install "grounded[pdf]"          # + PDF sources
-pip install "grounded[mcp]"          # + MCP server
+pip install grounded-check                 # core, zero dependencies
+pip install "grounded-check[pdf]"          # + PDF sources
+pip install "grounded-check[mcp]"          # + MCP server
 ```
 
 Python 3.10+. No network access, no API key, no model download, no GPU.

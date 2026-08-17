@@ -3,7 +3,11 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "grounded"
+# Distribution name on PyPI. The bare "grounded" was already taken
+# (adieyal/grounded v1.1.0), so the sibling naming pattern used by
+# fc0web/grounding-check was extended here. The importable module and
+# CLI command are still `grounded`.
+name = "grounded-check"
 version = "0.1.2"
 description = "Check that generated text is actually supported by its sources. Deterministic, offline, no model."
 readme = "README.md"
