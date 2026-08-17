@@ -237,6 +237,11 @@ Contributions welcome, especially:
 
 ---
 
+## See also
+
+- **[fc0web/grounding-check](https://github.com/fc0web/grounding-check)** — narrow sibling for SCPI hardware command verification. Same principle (literal presence in source), but the source is an instrument manual and the claims are SCPI commands like `MEASure:CURRent?`. Use it when the LLM's output is device commands rather than prose.
+- **[Rei-AIOS Peace API SaaS spec](https://rei-aios.pages.dev/tools/peace-api-rei-solver-saas-spec/)** — the broader "verification layer for LLM output" concept that both `grounded` and `grounding-check` are reference implementations of.
+
 ## License
 
 MIT.
