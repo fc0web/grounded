@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -153,9 +154,13 @@ def test_audit_appends_do_not_rewrite_history(tmp_path):
 
 def _cli(*args: str) -> subprocess.CompletedProcess:
     root = Path(__file__).resolve().parents[1]
-    env = {"PYTHONPATH": str(root / "src"), "PATH": "/usr/bin:/bin"}
+    # Explicit UTF-8 capture so the report's em-dashes survive on Windows
+    # consoles whose default codec (cp932, cp1252) cannot decode them.
+    env = {"PYTHONPATH": str(root / "src"),
+           "PATH": os.environ.get("PATH", "/usr/bin:/bin")}
     return subprocess.run([sys.executable, "-m", "grounded.cli", *args],
-                          capture_output=True, text=True, cwd=root, env=env)
+                          capture_output=True, cwd=root, env=env,
+                          encoding="utf-8", errors="replace")
 
 
 def test_cli_exit_code_is_one_on_fabrication():

@@ -11,7 +11,7 @@ Deterministic. Offline. No model involved in the checking.
 
 from __future__ import annotations
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from .claims import Claim, Kind, extract
 from .sources import Source, SourceError, load, load_one, normalise

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "grounded"
-version = "0.1.0"
+version = "0.1.1"
 description = "Check that generated text is actually supported by its sources. Deterministic, offline, no model."
 readme = "README.md"
 requires-python = ">=3.10"

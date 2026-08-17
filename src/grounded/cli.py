@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import argparse
+import io
 import sys
 from pathlib import Path
 
@@ -17,6 +18,21 @@ from .claims import Kind, extract
 from .report import to_json, to_text
 from .sources import SourceError, load
 from .verify import verify
+
+
+def _force_utf8_stdio() -> None:
+    """Reconfigure stdout/stderr to UTF-8 so the report's em-dashes and
+    ellipses survive on Windows consoles whose default codec (e.g. cp932,
+    cp1252) cannot encode them. `errors="replace"` keeps the CLI usable
+    even on the rare terminal where the reconfigure itself is refused."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, io.UnsupportedOperation):
+            pass
+
+
+_force_utf8_stdio()
 
 KIND_CHOICES = [k.value for k in Kind]
 
