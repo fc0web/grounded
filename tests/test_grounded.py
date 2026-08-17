@@ -154,10 +154,15 @@ def test_audit_appends_do_not_rewrite_history(tmp_path):
 
 def _cli(*args: str) -> subprocess.CompletedProcess:
     root = Path(__file__).resolve().parents[1]
+    # Preserve the host env so Windows Python 3.10 can initialise at all —
+    # it reads SystemRoot / USERPROFILE / TEMP for hash randomisation and
+    # dies with "failed to get random numbers" if they are missing. Only
+    # PYTHONPATH is overridden, so the subprocess still imports the source
+    # tree rather than any installed grounded.
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(root / "src")
     # Explicit UTF-8 capture so the report's em-dashes survive on Windows
     # consoles whose default codec (cp932, cp1252) cannot decode them.
-    env = {"PYTHONPATH": str(root / "src"),
-           "PATH": os.environ.get("PATH", "/usr/bin:/bin")}
     return subprocess.run([sys.executable, "-m", "grounded.cli", *args],
                           capture_output=True, cwd=root, env=env,
                           encoding="utf-8", errors="replace")
